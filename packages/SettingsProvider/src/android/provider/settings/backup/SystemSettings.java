@@ -88,5 +88,6 @@ public class SystemSettings {
         Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
+        Settings.System.LOCKSCREEN_MEDIA_METADATA
     };
 }
