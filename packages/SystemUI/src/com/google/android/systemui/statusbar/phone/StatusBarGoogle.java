@@ -67,6 +67,7 @@ import com.android.systemui.statusbar.phone.dagger.StatusBarComponent;
 import com.android.systemui.shared.plugins.PluginManager;
 import com.android.systemui.stackdivider.Divider;
 import com.android.systemui.statusbar.phone.LightsOutNotifController;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.phone.StatusBarNotificationActivityStarter;
 import com.android.systemui.statusbar.phone.ShadeController;
 import com.android.systemui.statusbar.SuperStatusBarViewFactory;
@@ -163,6 +164,7 @@ public class StatusBarGoogle extends StatusBar {
             PluginManager pluginManager,
             Optional<Divider> dividerOptional,
             LightsOutNotifController lightsOutNotifController,
+            FlashlightController flashlightController,
             StatusBarNotificationActivityStarter.Builder
                     statusBarNotificationActivityStarterBuilder,
             ShadeController shadeController,
@@ -242,6 +244,7 @@ public class StatusBarGoogle extends StatusBar {
             pluginManager,
             dividerOptional,
             lightsOutNotifController,
+            flashlightController,
             statusBarNotificationActivityStarterBuilder,
             shadeController,
             superStatusBarViewFactory,
