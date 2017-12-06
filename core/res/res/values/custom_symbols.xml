@@ -93,4 +93,7 @@
     <!-- Whether device supports variable refresh rate -->
     <java-symbol type="bool" name="config_hasVariableRefreshRate" />
 
+    <!-- Vendor signatures -->
+    <java-symbol type="array" name="config_vendorPlatformSignatures" />
+
 </resources>
