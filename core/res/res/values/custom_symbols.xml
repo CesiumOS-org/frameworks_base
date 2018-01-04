@@ -81,4 +81,7 @@
     <!-- Power menu -->
     <java-symbol type="array" name="config_restartActionsList" />
 
+    <!-- Whether the device supports Smart Pixels -->
+    <java-symbol type="bool" name="config_enableSmartPixels" />
+
 </resources>
