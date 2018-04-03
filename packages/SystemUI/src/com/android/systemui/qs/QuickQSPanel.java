@@ -180,6 +180,12 @@ public class QuickQSPanel extends QSPanel {
     }
 
     @Override
+    public void updateViewVisibilityForTuningValue(boolean visible) {
+        // no, no, we don't wanna show the brightness slider here, thank you
+        super.updateViewVisibilityForTuningValue(false);
+    }
+
+    @Override
     public void setTiles(Collection<QSTile> tiles) {
         ArrayList<QSTile> quickTiles = new ArrayList<>();
         for (QSTile tile : tiles) {
