@@ -15,4 +15,7 @@
     <!-- Lockscreen Charging/temp -->
     <integer name="config_battTempDivider" translatable="false">10</integer>
 
+    <!-- Whether to show VoLTE icon in the status bar -->
+    <bool name="config_display_volte">true</bool>
+
 </resources>
