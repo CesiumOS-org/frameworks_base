@@ -75,4 +75,9 @@
         android:summary="%s"
         android:entries="@array/clock_options" />
 
+    <com.android.systemui.tuner.TunerSwitch
+        android:key="volte"
+        android:title="@string/status_bar_volte"
+        sysui:defValue="true" />
+
 </PreferenceScreen>
