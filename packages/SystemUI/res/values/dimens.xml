@@ -1159,4 +1159,8 @@
 
     <!-- Size of the RAT type for CellularTile -->
     <dimen name="celltile_rat_type_size">10sp</dimen>
+
+    <!-- screenrecord -->
+    <dimen name="screenrecord_dot_size">48dp</dimen>
+
 </resources>
