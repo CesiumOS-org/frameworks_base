@@ -4694,6 +4694,12 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Ability to show/hide settings dashboard suggestion cards
+         * @hide
+         */
+        public static final String SETTINGS_SUGGESTION_CARDS = "settings_suggestion_cards";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
