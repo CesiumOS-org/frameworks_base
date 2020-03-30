@@ -39,8 +39,9 @@ import android.provider.Settings;
 import android.service.vr.IVrManager;
 import android.service.vr.IVrStateCallbacks;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -68,7 +69,7 @@ public class BrightnessController implements ToggleSlider.Listener {
     private final int mDefaultBacklightForVr;
 
     private final Context mContext;
-    private final ImageView mIcon;
+    private final ImageButton mIcon;
     private final ToggleSlider mControl;
     private final boolean mAutomaticAvailable;
     private final DisplayManager mDisplayManager;
@@ -237,7 +238,7 @@ public class BrightnessController implements ToggleSlider.Listener {
             try {
                 switch (msg.what) {
                     case MSG_UPDATE_ICON:
-                        updateIcon(msg.arg1 != 0);
+                        updateIcon();
                         break;
                     case MSG_UPDATE_SLIDER:
                         updateSlider(msg.arg1, msg.arg2 != 0);
@@ -263,9 +264,9 @@ public class BrightnessController implements ToggleSlider.Listener {
         }
     };
 
-    public BrightnessController(Context context, ImageView icon, ToggleSlider control) {
-        mContext = context;
+    public BrightnessController(Context context, ImageButton icon, ToggleSlider control) {
         mIcon = icon;
+        mContext = context;
         mControl = control;
         mControl.setMax(GAMMA_SPACE_MAX);
         mBackgroundHandler = new Handler((Looper) Dependency.get(Dependency.BG_LOOPER));
@@ -292,16 +293,18 @@ public class BrightnessController implements ToggleSlider.Listener {
         mVrManager = IVrManager.Stub.asInterface(ServiceManager.getService(
                 Context.VR_SERVICE));
 
-        mIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Settings.System.putIntForUser(mContext.getContentResolver(),
+        if (mAutomaticAvailable) {
+            mIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Settings.System.putIntForUser(mContext.getContentResolver(),
                         Settings.System.SCREEN_BRIGHTNESS_MODE, mAutomatic ?
-                            Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL :
-                            Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL :
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC,
                         UserHandle.USER_CURRENT);
-            }
-        });
+                }
+            });
+        }
     }
 
     public void addStateChangedCallback(BrightnessStateChangeCallback cb) {
@@ -357,7 +360,7 @@ public class BrightnessController implements ToggleSlider.Listener {
     @Override
     public void onChanged(ToggleSlider toggleSlider, boolean tracking, boolean automatic,
             int value, boolean stopTracking) {
-        updateIcon(mAutomatic);
+        updateIcon();
         if (mExternalChange) return;
 
         if (mSliderAnimator != null) {
@@ -426,7 +429,11 @@ public class BrightnessController implements ToggleSlider.Listener {
         mDisplayManager.setTemporaryBrightness(brightness);
     }
 
-    private void updateIcon(boolean automatic) {
+    protected boolean isBrightnessAuto() {
+        return mAutomatic;
+    }
+
+    private void updateIcon() {
         if (mIcon != null) {
             mIcon.setImageResource(mAutomatic ?
                     com.android.systemui.R.drawable.ic_qs_brightness_auto_on :
