@@ -156,4 +156,8 @@
     <!-- Alerting notification header label -->
     <string name="notification_section_header_alerting">Alerting notifications</string>
 
+    <!-- ADB over network tile -->
+    <string name="quick_settings_network_adb_label">ADB over network</string>
+    <string name="quick_settings_network_adb_toast">USB debugging is not enabled</string>
+
 </resources>
