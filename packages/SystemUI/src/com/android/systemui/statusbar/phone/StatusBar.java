@@ -2839,6 +2839,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             else if (DevicePolicyManager.ACTION_SHOW_DEVICE_MONITORING_DIALOG.equals(action)) {
                 mQSPanel.showDeviceMonitoringDialog();
             }
+            else if ("com.android.systemui.ACTION_DISMISS_KEYGUARD".equals(action)) {
+                if (intent.hasExtra("launch")) {
+                    Intent launchIntent = (Intent) intent.getParcelableExtra("launch");
+                    startActivityDismissingKeyguard(launchIntent, true, true);
+                }
+            }
         }
     };
 
@@ -3923,12 +3929,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mHandler.post(() -> onCameraLaunchGestureDetected(mLastCameraLaunchSource));
             }
             updateIsKeyguard();
-            else if ("com.android.systemui.ACTION_DISMISS_KEYGUARD".equals(action)) {
-                if (intent.hasExtra("launch")) {
-                    Intent launchIntent = (Intent) intent.getParcelableExtra("launch");
-                    startActivityDismissingKeyguard(launchIntent, true, true);
-                }
-            }
         }
 
         @Override
