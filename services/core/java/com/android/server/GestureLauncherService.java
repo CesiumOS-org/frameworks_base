@@ -435,6 +435,14 @@ public class GestureLauncherService extends SystemService {
             Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
         }
     }
+    
+    /**
+     * @return true if camera was launched, false otherwise.
+     * @hide
+     */
+    public boolean doCameraLaunchGesture() {
+        return handleCameraGesture(false, StatusBarManager.CAMERA_LAUNCH_SOURCE_POWER_DOUBLE_TAP);
+    }
 
     private final BroadcastReceiver mUserReceiver = new BroadcastReceiver() {
         @Override
