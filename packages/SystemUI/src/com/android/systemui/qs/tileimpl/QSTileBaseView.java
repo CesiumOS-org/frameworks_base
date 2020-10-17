@@ -15,6 +15,7 @@ package com.android.systemui.qs.tileimpl;
 
 import static com.android.systemui.qs.tileimpl.QSIconViewImpl.QS_ANIM_LENGTH;
 
+import android.annotation.ColorInt;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -44,8 +45,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import androidx.core.graphics.ColorUtils;
-
 import com.android.settingslib.Utils;
 import com.android.systemui.R;
 import com.android.systemui.plugins.qs.QSIconView;
@@ -70,7 +69,8 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
     private float mStrokeWidthInactive;
 
     private final ImageView mBg;
-    private final int mColorActive;
+    private int mColorActive;
+    private int mColorActiveAlpha;
     private final int mColorInactive;
     private final int mColorDisabled;
     private int mCircleColor;
@@ -121,10 +121,10 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
         setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_YES);
         setBackground(mTileBackground);
 
-        int activeColor = Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent);
-	mColorActive = ColorUtils.setAlphaComponent(activeColor, 51 /* 20% opacity */);
-        mColorDisabled = Utils.getDisabled(context,
-                Utils.getColorAttrDefaultColor(context, android.R.attr.textColorTertiary));
+        mColorActive = Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent);
+        mColorActiveAlpha = adjustAlpha(mColorActive, 0.2f);
+        mColorActive = mColorActiveAlpha;
+        mColorDisabled = context.getResources().getColor(R.color.qs_tile_background_color_disabled);
         mColorInactive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
 
         setPadding(0, 0, 0, 0);
@@ -225,6 +225,15 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
                 }
                 break;
         }
+    }
+
+    @ColorInt
+    private static int adjustAlpha(@ColorInt int color, float factor) {
+        int alpha = Math.round(Color.alpha(color) * factor);
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        return Color.argb(alpha, red, green, blue);
     }
 
     protected void handleStateChanged(QSTile.State state) {
