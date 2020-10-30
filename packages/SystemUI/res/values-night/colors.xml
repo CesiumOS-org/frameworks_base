@@ -108,4 +108,7 @@
     <color name="volume_background_tint">#0d0d0d</color>
     <color name="qs_tile_background_color_disabled">#1f1f1f</color>
 
+    <!-- controls -->
+    <color name="control_default_background">#19ffffff</color> <!-- 10% white -->
+
 </resources>
