@@ -19,6 +19,7 @@ LOCAL_MODULE := frameworks-base-overlays
 LOCAL_REQUIRED_MODULES := \
 	AccentColorDarkOrangeOverlay \
 	AccentColorMIUIOverlay \
+        AccentColorXiaomiOrangeOverlay \
 	AccentColorTealOverlay \
 	AccentColorRedOverlay \
 	AccentColorQGreenOverlay \
