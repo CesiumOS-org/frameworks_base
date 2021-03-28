@@ -4931,31 +4931,6 @@ public final class Settings {
         public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
 
         /**
-         * Whether to show QS brightness slider
-         * @hide
-         */
-        public static final String QS_SHOW_BRIGHTNESS = "qs_show_brightness";
-
-        /**
-         * Whether to show QS brightness slider on bottom
-         * @hide
-         */
-        public static final String QS_BRIGHTNESS_POSITION_BOTTOM = "qs_brightness_position_bottom";
-
-        /**
-         * Whether to show QS brightness slider above qs footer
-         * Only applies when {@link QS_BRIGHTNESS_POSITION_BOTTOM} is enabled
-         * @hide
-         */
-        public static final String QS_SHOW_BRIGHTNESS_ABOVE_FOOTER = "qs_show_brightness_above_footer";
-
-        /**
-         * Whether to show the brighness slider auto brightness toggle
-         * @hide
-         */
-        public static final String QS_SHOW_AUTO_BRIGHTNESS = "qs_show_auto_brightness";
-
-        /**
          * Whether the button backlight is only lit when pressed (and not when screen is touched)
          * The value is boolean (1 or 0).
          */

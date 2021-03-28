@@ -89,10 +89,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_HEADERS,
         Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
         Settings.System.LOCKSCREEN_MEDIA_METADATA,
-        Settings.System.QS_SHOW_BRIGHTNESS,
-        Settings.System.QS_BRIGHTNESS_POSITION_BOTTOM,
-        Settings.System.QS_SHOW_BRIGHTNESS_ABOVE_FOOTER,
-        Settings.System.QS_SHOW_AUTO_BRIGHTNESS,
         Settings.System.USE_OLD_MOBILETYPE
     };
 }
